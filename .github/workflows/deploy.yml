@@ -1,0 +1,15 @@
+name: Deploy to S3
+on:
+  push:
+    branches:
+      - release
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: AWS Configure
+        run: aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} && aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} && aws configure set default.region us-east-1
+      - name: Sync with S3 bucket
+        run: aws s3 sync ./ s3://<useful-dogus> --delete --exclude ".git/*"
