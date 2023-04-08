@@ -1,2 +1,2 @@
 # usefuldogus.com
-Web Site for Useful Dogus
+Useful Dogus - Web Based Productivity Tools
